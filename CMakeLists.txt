@@ -44,6 +44,7 @@ set(EXECUTABLE_OUTPUT_PATH ${cpp-basic-web-server_SOURCE_DIR})
 list (APPEND WSJCPP_INCLUDE_DIRS "src")
 list (APPEND WSJCPP_INCLUDE_DIRS "src/argument_processors")
 list (APPEND WSJCPP_INCLUDE_DIRS "src/employees")
+list (APPEND WSJCPP_INCLUDE_DIRS "src/api_handlers")
 list (APPEND WSJCPP_INCLUDE_DIRS "src/3rdparty/sqlite3/src")
 
 # argument processors
@@ -57,10 +58,11 @@ list (APPEND WSJCPP_INCLUDE_DIRS "src/3rdparty/sqlite3/src")
 # list (APPEND WSJCPP_SOURCES "./src/argument_processors/argument_processor_web_test.cpp")
 
 # employees
+list (APPEND WSJCPP_SOURCES "./src/employees/employ_config.cpp")
+
 # list (APPEND WSJCPP_SOURCES "./src/employees/employ_team_logos.cpp")
 # list (APPEND WSJCPP_SOURCES "./src/employees/employ_flags.cpp")
 # list (APPEND WSJCPP_SOURCES "./src/employees/employ_scoreboard.cpp")
-# list (APPEND WSJCPP_SOURCES "./src/employees/employ_config.cpp")
 # list (APPEND WSJCPP_SOURCES "./src/employees/employ_database.cpp")
 
 # checker

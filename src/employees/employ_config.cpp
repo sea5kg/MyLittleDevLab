@@ -22,42 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ***********************************************************************************/
+ 
+#include "employ_config.h"
+#include <wsjcpp_core.h>
 
-#pragma once
+// ---------------------------------------------------------------------
+// EmployConfig
 
-#include <string>
-#include <json.hpp>
-#include "HttpService.h"
+REGISTRY_WJSCPP_SERVICE_LOCATOR(EmployConfig)
 
-class WebServer {
-    public:
-        WebServer();
-        hv::HttpService *getService();
-        int httpApiV1GetPaths(HttpRequest* req, HttpResponse* resp);
-        int httpAdmin(HttpRequest* req, HttpResponse* resp);
-        int httpWebFolder(HttpRequest* req, HttpResponse* resp);
-        int httpApiV1Flag(HttpRequest* req, HttpResponse* resp);
-        int httpApiV1Scoreboard(HttpRequest* req, HttpResponse* resp);
-        int httpApiV1Game(HttpRequest* req, HttpResponse* resp);
-        int httpApiV1MyIp(HttpRequest* req, HttpResponse* resp);
+EmployConfig::EmployConfig()
+: WsjcppEmployBase(EmployConfig::name(), {}) {
+    TAG = "EmployConfig";
+}
 
-    private:
-        std::string TAG;
-        std::string m_sApiPathPrefix;
-        std::string m_sTeamLogoPrefix;
-        int m_nTeamLogoPrefixLength;
-        hv::HttpService *m_pHttpService;
+bool EmployConfig::init() {
+    WsjcppLog::info(TAG, "init");
+    return true;
+}
 
-        // EmployConfig *m_pConfig;
-        // EmployFlags *m_pEmployFlags;
-        // EmployDatabase *m_pEmployDatabase;
-        // EmployTeamLogos *m_pTeamLogos;
+bool EmployConfig::deinit() {
+    WsjcppLog::info(TAG, "deinit");
+    return true;
+}
 
-        std::string m_sIndexHtml;
-        std::string m_sScoreboardHtmlFolder;
+void EmployConfig::setDataDir(const std::string sConfigDir) {
+    m_sConfigDir = sConfigDir;
+    // TODO
+}
 
-        nlohmann::json m_jsonGame;
-        std::string m_sCacheResponseGameJson;
-        nlohmann::json m_jsonTeams; // prepare data for list of teams
-        std::string m_sCacheResponseTeamsJson;
-};
+// void EmployMyImpl::doSomething() {
+//     WsjcppLog::info(TAG, "doSomething");
+// }
+
+// void EmployMyImpl::doSomething2() {
+//     WsjcppLog::info(TAG, "doSomething2");
+// }

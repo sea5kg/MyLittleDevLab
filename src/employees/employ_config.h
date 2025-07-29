@@ -25,39 +25,26 @@
 
 #pragma once
 
-#include <string>
-#include <json.hpp>
-#include "HttpService.h"
+#include <wsjcpp_employees.h>
+#include "employ_config.h"
 
-class WebServer {
+class EmployConfig : public WsjcppEmployBase { //, public IMyImpl, public IMyImpl2 {
     public:
-        WebServer();
-        hv::HttpService *getService();
-        int httpApiV1GetPaths(HttpRequest* req, HttpResponse* resp);
-        int httpAdmin(HttpRequest* req, HttpResponse* resp);
-        int httpWebFolder(HttpRequest* req, HttpResponse* resp);
-        int httpApiV1Flag(HttpRequest* req, HttpResponse* resp);
-        int httpApiV1Scoreboard(HttpRequest* req, HttpResponse* resp);
-        int httpApiV1Game(HttpRequest* req, HttpResponse* resp);
-        int httpApiV1MyIp(HttpRequest* req, HttpResponse* resp);
+        EmployConfig();
+        static std::string name() { return "EmployConfig"; }
+
+        virtual bool init() override;
+        virtual bool deinit() override;
+
+        void setDataDir(const std::string sConfigDir);
+
+        // // IMyImpl
+        // virtual void doSomething() override;
+
+        // // IMyImpl2
+        // virtual void doSomething2() override;
 
     private:
         std::string TAG;
-        std::string m_sApiPathPrefix;
-        std::string m_sTeamLogoPrefix;
-        int m_nTeamLogoPrefixLength;
-        hv::HttpService *m_pHttpService;
-
-        // EmployConfig *m_pConfig;
-        // EmployFlags *m_pEmployFlags;
-        // EmployDatabase *m_pEmployDatabase;
-        // EmployTeamLogos *m_pTeamLogos;
-
-        std::string m_sIndexHtml;
-        std::string m_sScoreboardHtmlFolder;
-
-        nlohmann::json m_jsonGame;
-        std::string m_sCacheResponseGameJson;
-        nlohmann::json m_jsonTeams; // prepare data for list of teams
-        std::string m_sCacheResponseTeamsJson;
+        std::string m_sConfigDir;
 };
