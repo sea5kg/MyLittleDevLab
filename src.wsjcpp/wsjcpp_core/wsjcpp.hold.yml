@@ -21,7 +21,7 @@ distribution:
   - source-file: src/wsjcpp_core.cpp
     target-file: wsjcpp_core.cpp
     type: "source-code"
-    sha1: "1683203f11291a04bf771e2ed798a29c9e092bc6"
+    sha1: "9153a6eff17ea98ac510d96de7060dd25053bdb3"
   - source-file: src/wsjcpp_core.h
     target-file: wsjcpp_core.h
     type: "source-code" # todo must be header-file
