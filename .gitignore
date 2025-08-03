@@ -2,6 +2,7 @@
 /.wsjcpp
 /.logs
 /cpp-basic-web-server
+/.vscode
 
 # Prerequisites
 *.d

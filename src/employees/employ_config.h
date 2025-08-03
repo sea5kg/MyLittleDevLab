@@ -33,8 +33,8 @@ class EmployConfig : public WsjcppEmployBase { //, public IMyImpl, public IMyImp
         EmployConfig();
         static std::string name() { return "EmployConfig"; }
 
-        virtual bool init() override;
-        virtual bool deinit() override;
+        virtual bool init(const std::string &sName, bool bSilent) override;
+        virtual bool deinit(const std::string &sName, bool bSilent) override;
 
         void setDataDir(const std::string sConfigDir);
 

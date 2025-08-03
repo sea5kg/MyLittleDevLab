@@ -32,17 +32,21 @@
 REGISTRY_WJSCPP_SERVICE_LOCATOR(EmployConfig)
 
 EmployConfig::EmployConfig()
-: WsjcppEmployBase(EmployConfig::name(), {}) {
+: WsjcppEmployBase({EmployConfig::name()}, {}) {
     TAG = "EmployConfig";
 }
 
-bool EmployConfig::init() {
-    WsjcppLog::info(TAG, "init");
+bool EmployConfig::init(const std::string &sName, bool bSilent) {
+    if (!bSilent) {
+        WsjcppLog::info(TAG, "init");
+    }
     return true;
 }
 
-bool EmployConfig::deinit() {
-    WsjcppLog::info(TAG, "deinit");
+bool EmployConfig::deinit(const std::string &sName, bool bSilent) {
+    if (!bSilent) {
+        WsjcppLog::info(TAG, "deinit");
+    }
     return true;
 }
 

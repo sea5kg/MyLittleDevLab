@@ -39,7 +39,7 @@ dependencies:
     url: "https://github.com/wsjcpp/wsjcpp-employees:master"
     origin: "https://github.com/"
     installation-dir: "./src.wsjcpp/wsjcpp_employees"
-    installation-datetime: "Wed, 23 Apr 2025 17:37:08 GMT"
+    installation-datetime: "Sun, 03 Aug 2025 07:44:41 GMT"
   - name: "nlohmann/json"
     version: "v3.9.1"
     url: "https://github.com/nlohmann/json:develop"
