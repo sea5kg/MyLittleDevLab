@@ -43,6 +43,10 @@ int main(int argc, const char* argv[]) {
         "./data",
         "/root/data/"
     };
+    WsjcppEmployeesInit empls({}, false);
+    if (!empls.inited) {
+        return -1;
+    }
 
     auto *pConfig = findWsjcppEmploy<EmployConfig>();
 

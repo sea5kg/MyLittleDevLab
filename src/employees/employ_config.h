@@ -37,7 +37,7 @@ class EmployConfig : public WsjcppEmployBase { //, public IMyImpl, public IMyImp
         virtual bool deinit(const std::string &sName, bool bSilent) override;
 
         void setDataDir(const std::string sConfigDir);
-
+        const std::string &getHtmlFolder();
         // // IMyImpl
         // virtual void doSomething() override;
 
@@ -47,4 +47,5 @@ class EmployConfig : public WsjcppEmployBase { //, public IMyImpl, public IMyImp
     private:
         std::string TAG;
         std::string m_sConfigDir;
+        std::string m_sHtmlFolder;
 };

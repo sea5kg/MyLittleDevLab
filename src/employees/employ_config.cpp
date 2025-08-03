@@ -25,6 +25,7 @@
  
 #include "employ_config.h"
 #include <wsjcpp_core.h>
+#include <wsjcpp_yaml.h>
 
 // ---------------------------------------------------------------------
 // EmployConfig
@@ -52,7 +53,34 @@ bool EmployConfig::deinit(const std::string &sName, bool bSilent) {
 
 void EmployConfig::setDataDir(const std::string sConfigDir) {
     m_sConfigDir = sConfigDir;
-    // TODO
+    m_sHtmlFolder = "";
+    std::string sConfigFile = sConfigDir + "/config.yml";
+    if (!WsjcppCore::fileExists(sConfigFile)) {
+        WsjcppLog::throw_err(TAG, "File not found " + sConfigFile);
+    }
+
+    WsjcppYaml yaml;
+    std::string sError;
+    if (!yaml.loadFromFile(sConfigFile, sError)) {
+        WsjcppLog::throw_err(TAG, "Failed parsing yaml: " + sError);
+    }
+    std::string sHtmlFolder = yaml["html-folder"].valStr();
+    if (sHtmlFolder == "") {
+        WsjcppLog::throw_err(TAG, "Missing option html-folder in " + sConfigFile);
+    }
+    if (sHtmlFolder != "/") {
+        sHtmlFolder = WsjcppCore::doNormalizePath(m_sConfigDir + "/" + sHtmlFolder);
+    }
+    if (!WsjcppCore::dirExists(sHtmlFolder)) {
+        WsjcppLog::throw_err(TAG, "Folder not found " + sConfigFile);
+    }
+    m_sHtmlFolder = sHtmlFolder;
+    WsjcppLog::info(TAG, "Html Folder: " + m_sHtmlFolder);
+
+}
+
+const std::string &EmployConfig::getHtmlFolder() {
+    return m_sHtmlFolder;
 }
 
 // void EmployMyImpl::doSomething() {
