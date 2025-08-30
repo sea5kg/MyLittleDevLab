@@ -1,8 +1,8 @@
 /tmp
 /.wsjcpp
+/.vscode
 /.logs
 /cpp-basic-web-server
-/.vscode
 
 # Prerequisites
 *.d
