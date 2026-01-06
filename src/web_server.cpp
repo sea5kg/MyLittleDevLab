@@ -152,6 +152,20 @@ int WebServer::httpApi(HttpRequest* req, HttpResponse* resp) {
 
     auto *pHandler = WsjcppJsonRpc20::findJsonRpc20Handler(sMethod);
 
+    auto *pClient = new WsjcppJsonRpc20WebSocketClient();
+    pClient->set
+
+    auto *request = new WsjcppJsonRpc20Request(pClient, nullptr);
+    request->parseIncomeData(req_json_body.dump());
+
+    // public:
+    //     WsjcppJsonRpc20Request(
+    //         WsjcppJsonRpc20WebSocketClient *pClient,
+    //         WsjcppJsonRpc20WebSocketServer *pWebSocketServer
+    //     );
+
+    // pHandler->handle(WsjcppJsonRpc20Request *pRequest);
+
     if (!pHandler) {
         return 400;
     }
