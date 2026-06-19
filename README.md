@@ -1,5 +1,7 @@
-# cpp-basic-web-server
+# MyLittleDevLab
 
 (In progress)
 
-Example of c++ web server
+A minimalist platform for content development and management, as well as for setting up various processes
+
+
