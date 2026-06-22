@@ -13,11 +13,11 @@ keywords:
 
 dependencies:
   - name: "wsjcpp-core"
-    version: "v0.2.3"
+    version: "v0.2.5"
     url: "https://github.com/wsjcpp/wsjcpp-core:master"
     origin: "https://github.com/"
     installation-dir: "./src.wsjcpp/wsjcpp_core"
-    installation-datetime: "Sun, 03 Aug 2025 07:50:06 GMT"
+    installation-datetime: "Mon, 22 Jun 2026 14:45:12 GMT"
   - name: "HowardHinnant/date"
     version: "v2.4.1"
     url: "https://github.com/wsjcpp/HowardHinnant_date:master"

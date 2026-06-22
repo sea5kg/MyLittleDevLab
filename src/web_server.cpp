@@ -94,7 +94,7 @@ int WebServer::httpHandleRequests(HttpRequest* req, HttpResponse* resp) {
   } else {
     sRequestPath = sOriginalRequestPath;
   }
-  sRequestPath = WsjcppCore::doNormalizePath(sRequestPath);
+  sRequestPath = wsjcpp::normalizeFilePath(sRequestPath);
 
   // WsjcppLog::info(TAG, "sRequestPath = " + sRequestPath);
   if (sRequestPath == "/api" || sRequestPath == "/api/") {
@@ -112,7 +112,7 @@ int WebServer::httpHandleRequests(HttpRequest* req, HttpResponse* resp) {
 
   // TODO
   WsjcppLog::info(TAG, "Request path: " + sRequestPath);
-  std::string sFilePath = sRequestPath = WsjcppCore::doNormalizePath(html_folder + "/" + sRequestPath);
+  std::string sFilePath = sRequestPath = wsjcpp::normalizeFilePath(html_folder + "/" + sRequestPath);
   if (WsjcppCore::fileExists(sFilePath)) { // TODO check the file exists not dir
     return resp->File(sFilePath.c_str());
   }
