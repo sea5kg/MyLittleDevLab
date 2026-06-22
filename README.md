@@ -1,4 +1,4 @@
-# MyLittleDevLab
+# my-little-dev-lab
 
 (In progress)
 
