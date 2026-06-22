@@ -31,18 +31,19 @@
 #include <employ_config.h>
 
 class WebServer {
-    public:
-        WebServer();
-        hv::HttpService *getService();
-        int httpHandleRequests(HttpRequest* req, HttpResponse* resp);
-        int httpApi(HttpRequest* req, HttpResponse* resp);
+public:
+  WebServer();
+  hv::HttpService *getService();
+  int httpHandleRequests(HttpRequest* req, HttpResponse* resp);
+  int httpApi(HttpRequest* req, HttpResponse* resp);
 
-    private:
-        std::string TAG;
-        hv::HttpService *m_pHttpService;
+private:
+  std::string TAG;
+  hv::HttpService *m_pHttpService;
 
-        EmployConfig *m_pConfig;
+  EmployConfig *m_pConfig;
 
-        std::string m_sIndexHtml;
-        std::string m_sHtmlFolder;
+  std::string m_sIndexHtml;
+  std::string m_sHtmlFolder;
+  std::map<std::string, std::string> m_web_sites;
 };

@@ -29,25 +29,29 @@
 #include "employ_config.h"
 
 class EmployConfig : public WsjcppEmployBase { //, public IMyImpl, public IMyImpl2 {
-    public:
-        EmployConfig();
-        static std::string name() { return "EmployConfig"; }
+public:
+  EmployConfig();
+  static std::string name() { return "EmployConfig"; }
 
-        virtual bool init(const std::string &sName, bool bSilent) override;
-        virtual bool deinit(const std::string &sName, bool bSilent) override;
+  virtual bool init(const std::string &sName, bool bSilent) override;
+  virtual bool deinit(const std::string &sName, bool bSilent) override;
 
-        void setDataDir(const std::string sConfigDir);
-        const std::string &getHtmlFolder() const;
-        int getPort() const;
-        // // IMyImpl
-        // virtual void doSomething() override;
+  void setDataDir(const std::string sConfigDir);
+  const std::string &getHtmlFolder() const;
+  int getPort() const;
 
-        // // IMyImpl2
-        // virtual void doSomething2() override;
+  std::map<std::string, std::string> web_sites() const;
 
-    private:
-        std::string TAG;
-        std::string m_sConfigDir;
-        std::string m_sHtmlFolder;
-        int m_nPort;
+  // // IMyImpl
+  // virtual void doSomething() override;
+
+  // // IMyImpl2
+  // virtual void doSomething2() override;
+
+private:
+  std::string TAG;
+  std::string m_sConfigDir;
+  std::string m_sHtmlFolder;
+  int m_nPort;
+  std::map<std::string, std::string> m_web_sites;
 };

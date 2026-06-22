@@ -90,6 +90,7 @@ void EmployConfig::setDataDir(const std::string sConfigDir) {
       std::string command = "git clone " + git_repo + " " + web_site_folder;
       system(command.c_str());
     }
+    m_web_sites[key] = web_site_folder + "/" + cur["html-folder"].valStr();
   }
 }
 
@@ -99,6 +100,10 @@ const std::string &EmployConfig::getHtmlFolder() const {
 
 int EmployConfig::getPort() const {
   return m_nPort;
+}
+
+std::map<std::string, std::string> EmployConfig::web_sites() const {
+  return m_web_sites;
 }
 
 // void EmployMyImpl::doSomething() {
