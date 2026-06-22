@@ -2,7 +2,7 @@
 #
 # MIT License
 #
-# Copyright (c) 2025 Evgenii Sopov
+# Copyright (c) 2025-2026 Evgenii Sopov
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -42,22 +42,12 @@ set(EXECUTABLE_OUTPUT_PATH ${my-little-dev-lab_SOURCE_DIR})
 
 # include header dirs
 list (APPEND WSJCPP_INCLUDE_DIRS "src")
-list (APPEND WSJCPP_INCLUDE_DIRS "src/argument_processors")
 list (APPEND WSJCPP_INCLUDE_DIRS "src/employees")
 list (APPEND WSJCPP_INCLUDE_DIRS "src/api_handlers")
-list (APPEND WSJCPP_INCLUDE_DIRS "src/3rdparty/sqlite3/src")
+list (APPEND WSJCPP_INCLUDE_DIRS "src/third_party/sqlite3/src")
 
 # employees
 list (APPEND WSJCPP_SOURCES "./src/employees/employ_config.cpp")
-
-# list (APPEND WSJCPP_SOURCES "./src/employees/employ_team_logos.cpp")
-# list (APPEND WSJCPP_SOURCES "./src/employees/employ_flags.cpp")
-# list (APPEND WSJCPP_SOURCES "./src/employees/employ_scoreboard.cpp")
-# list (APPEND WSJCPP_SOURCES "./src/employees/employ_database.cpp")
-
-# checker
-# list (APPEND WSJCPP_SOURCES "src/checker/dorunchecker.cpp")
-# list (APPEND WSJCPP_SOURCES "src/checker/service_checker_thread.cpp")
 
 # web_server
 list (APPEND WSJCPP_SOURCES "src/web_server.cpp")
@@ -86,18 +76,18 @@ set(BUILD_EXAMPLES OFF CACHE BOOL "")
 # set(WITH_HTTP_CLIENT OFF CACHE BOOL "")
 set(BUILD_SHARED OFF CACHE BOOL "")
 
-add_subdirectory(src/3rdparty/libhv)
+add_subdirectory(src/third_party/libhv)
 list (APPEND WSJCPP_LIBRARIES hv_static)
-list (APPEND WSJCPP_INCLUDE_DIRS "${PROJECT_BINARY_DIR}/src/3rdparty/libhv/include/hv")
+list (APPEND WSJCPP_INCLUDE_DIRS "${PROJECT_BINARY_DIR}/src/third_party/libhv/include/hv")
 
-add_subdirectory(src/3rdparty/sqlite3)
+add_subdirectory(src/third_party/sqlite3)
 # https://www.sqlite.org/threadsafe.html
 # target_compile_definitions(sqlite3-static
 #   PRIVATE
 #     SQLITE_THREADSAFE=0
 # )
 list (APPEND WSJCPP_LIBRARIES sqlite3-static)
-list (APPEND WSJCPP_INCLUDE_DIRS "${PROJECT_BINARY_DIR}/src/3rdparty/sqlite3/src")
+list (APPEND WSJCPP_INCLUDE_DIRS "${PROJECT_BINARY_DIR}/src/third_party/sqlite3/src")
 
 include_directories(${WSJCPP_INCLUDE_DIRS})
 

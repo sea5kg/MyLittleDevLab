@@ -1,3 +1,9 @@
 
 html-folder: ./html
 port: 10233
+
+web-sites:
+  "sea5kg.ru":
+    git-repository: https://github.com/sea5kg/sea5kg_ru
+    folder: ./other/sea5kg_ru
+    html-dir: ./other/sea5kg_ru/html
