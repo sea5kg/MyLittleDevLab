@@ -22,70 +22,83 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ***********************************************************************************/
- 
+
 #include "employ_config.h"
 #include <wsjcpp_core.h>
 #include <wsjcpp_yaml.h>
-
-// ---------------------------------------------------------------------
-// EmployConfig
 
 REGISTRY_WJSCPP_SERVICE_LOCATOR(EmployConfig)
 
 EmployConfig::EmployConfig()
 : WsjcppEmployBase({EmployConfig::name()}, {}) {
-    TAG = "EmployConfig";
+  TAG = "EmployConfig";
 }
 
 bool EmployConfig::init(const std::string &sName, bool bSilent) {
-    if (!bSilent) {
-        WsjcppLog::info(TAG, "init");
-    }
-    return true;
+  if (!bSilent) {
+    WsjcppLog::info(TAG, "init");
+  }
+  return true;
 }
 
 bool EmployConfig::deinit(const std::string &sName, bool bSilent) {
-    if (!bSilent) {
-        WsjcppLog::info(TAG, "deinit");
-    }
-    return true;
+  if (!bSilent) {
+    WsjcppLog::info(TAG, "deinit");
+  }
+  return true;
 }
 
 void EmployConfig::setDataDir(const std::string sConfigDir) {
-    m_sConfigDir = sConfigDir;
-    m_sHtmlFolder = "";
-    std::string sConfigFile = sConfigDir + "/config.yml";
-    if (!WsjcppCore::fileExists(sConfigFile)) {
-        WsjcppLog::throw_err(TAG, "File not found " + sConfigFile);
-    }
+  m_sConfigDir = sConfigDir;
+  m_sHtmlFolder = "";
+  std::string sConfigFile = sConfigDir + "/config.yml";
+  if (!WsjcppCore::fileExists(sConfigFile)) {
+    WsjcppLog::throw_err(TAG, "File not found " + sConfigFile);
+  }
 
-    WsjcppYaml yaml;
-    std::string sError;
-    if (!yaml.loadFromFile(sConfigFile, sError)) {
-        WsjcppLog::throw_err(TAG, "Failed parsing yaml: " + sError);
-    }
-    std::string sHtmlFolder = yaml["html-folder"].valStr();
-    if (sHtmlFolder == "") {
-        WsjcppLog::throw_err(TAG, "Missing option html-folder in " + sConfigFile);
-    }
-    if (sHtmlFolder != "/") {
-        sHtmlFolder = WsjcppCore::doNormalizePath(m_sConfigDir + "/" + sHtmlFolder);
-    }
-    if (!WsjcppCore::dirExists(sHtmlFolder)) {
-        WsjcppLog::throw_err(TAG, "Folder not found " + sConfigFile);
-    }
-    m_sHtmlFolder = sHtmlFolder;
-    WsjcppLog::info(TAG, "Html Folder: " + m_sHtmlFolder);
+  WsjcppYaml yaml;
+  std::string sError;
+  if (!yaml.loadFromFile(sConfigFile, sError)) {
+    WsjcppLog::throw_err(TAG, "Failed parsing yaml: " + sError);
+  }
+  std::string sHtmlFolder = yaml["html-folder"].valStr();
+  if (sHtmlFolder == "") {
+    WsjcppLog::throw_err(TAG, "Missing option html-folder in " + sConfigFile);
+  }
+  if (sHtmlFolder != "/") {
+    sHtmlFolder = WsjcppCore::doNormalizePath(m_sConfigDir + "/" + sHtmlFolder);
+  }
+  if (!WsjcppCore::dirExists(sHtmlFolder)) {
+    WsjcppLog::throw_err(TAG, "Folder not found " + sConfigFile);
+  }
+  m_sHtmlFolder = sHtmlFolder;
+  WsjcppLog::info(TAG, "Html Folder: " + m_sHtmlFolder);
 
-    m_nPort = yaml["port"].valInt();
+  m_nPort = yaml["port"].valInt();
+
+  std::string web_sites_dir = m_sConfigDir + "/web-sites";
+  if (!WsjcppCore::dirExists(web_sites_dir)) {
+    WsjcppCore::makeDirsPath(web_sites_dir);
+  }
+  std::vector<std::string> web_sites = yaml["web-sites"].keys();
+  for (int i = 0; i < web_sites.size(); i++) {
+    std::string key = web_sites[i];
+    WsjcppYamlCursor cur = yaml["web-sites"][key];
+    std::string web_site_folder = web_sites_dir + "/" + key;
+    std::string git_repo = cur["git-repository"];
+    if (!WsjcppCore::dirExists(web_site_folder)) {
+      std::string command = "git clone " + git_repo + " " + web_site_folder;
+      system(command.c_str());
+    }
+  }
 }
 
 const std::string &EmployConfig::getHtmlFolder() const {
-    return m_sHtmlFolder;
+  return m_sHtmlFolder;
 }
 
 int EmployConfig::getPort() const {
-    return m_nPort;
+  return m_nPort;
 }
 
 // void EmployMyImpl::doSomething() {

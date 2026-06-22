@@ -79,3 +79,9 @@ resources:
       modified: 1782134917
       sha1: "2d7ccf5b7e617474286297b9df2c270e718f7db1"
 
+    - filepath: "./data/.gitignore"
+      size: 10
+      pack-as: "text"
+      modified: 1782137400
+      sha1: "d5d8057aab2cb289dbd0e349d26bd4554f9605df"
+

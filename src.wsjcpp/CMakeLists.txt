@@ -71,6 +71,8 @@ list (APPEND WSJCPP_SOURCES "${CMAKE_SOURCE_DIR}/src/wsjcpp_resources/__data_htm
 list (APPEND WSJCPP_SOURCES "${CMAKE_SOURCE_DIR}/src/wsjcpp_resources/__data_html_index_html_pathffd2bc.cpp")
 list (APPEND WSJCPP_SOURCES "${CMAKE_SOURCE_DIR}/src/wsjcpp_resources/__data_html_admin_index_html_path5f17ec.h")
 list (APPEND WSJCPP_SOURCES "${CMAKE_SOURCE_DIR}/src/wsjcpp_resources/__data_html_admin_index_html_path5f17ec.cpp")
+list (APPEND WSJCPP_SOURCES "${CMAKE_SOURCE_DIR}/src/wsjcpp_resources/__data__gitignore_pathe282c3.h")
+list (APPEND WSJCPP_SOURCES "${CMAKE_SOURCE_DIR}/src/wsjcpp_resources/__data__gitignore_pathe282c3.cpp")
 
 # required-libraries
 list (APPEND WSJCPP_LIBRARIES "-lpthread")
