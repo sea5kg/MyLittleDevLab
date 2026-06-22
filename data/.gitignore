@@ -1,1 +1,3 @@
 /web-sites
+!config.yml
+!/config.d

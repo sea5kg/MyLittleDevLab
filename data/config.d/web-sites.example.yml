@@ -1,0 +1,5 @@
+
+# web-sites:
+#   "sea5kg.ru":
+#     git-repository: https://github.com/sea5kg/sea5kg_ru
+#     html-folder: ./html
